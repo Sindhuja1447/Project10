@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Smart Study Break System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #0b2545;
+            color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .auth-wrapper {
+            width: 100%;
+            max-width: 420px;
+            background: #112a4a;
+            border-radius: 32px;
+            box-shadow: 0 35px 120px rgba(2, 14, 42, 0.35);
+            overflow: hidden;
+        }
+
+        .auth-panel {
+            padding: 44px 40px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+
+        .brand-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 9999px;
+            background: #38bdf8;
+        }
+
+        .brand-text {
+            font-size: 22px;
+            font-weight: 700;
+            color: #f8fafc;
+        }
+
+        .auth-panel h1 {
+            font-size: 34px;
+            color: #f8fafc;
+            margin-bottom: 14px;
+        }
+
+        .auth-panel p {
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .field {
+            margin-bottom: 22px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 15px;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 10px;
+        }
+
+        .field input {
+            width: 100%;
+            padding: 16px 18px;
+            border: 1px solid #d1d5db;
+            border-radius: 18px;
+            background: #f8fafc;
+            color: #0f172a;
+            font-size: 15px;
+        }
+
+        .field input:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+        }
+
+        .button {
+            width: 100%;
+            padding: 16px 18px;
+            border: none;
+            border-radius: 18px;
+            background: #4f46e5;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background .2s ease, transform .2s ease;
+        }
+
+        .button:hover {
+            background: #4338ca;
+            transform: translateY(-1px);
+        }
+
+        .error {
+            margin-bottom: 22px;
+            padding: 14px 16px;
+            border-radius: 16px;
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        .help-text {
+            margin-top: 28px;
+            font-size: 14px;
+            color: #64748b;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="auth-wrapper">
+        <div class="auth-panel">
+            <h1>Smart Study Break System</h1>
+            <p>Login to access your fatigue monitor and hydration reminders.</p>
+            {% if error %}
+            <div class="error">{{ error }}</div>
+            {% endif %}
+            <form action="/login" method="post">
+                <div class="field">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your name" required>
+                </div>
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="password" required>
+                </div>
+                <button class="button" type="submit">Login</button>
+            </form>
+            <p class="help-text">Enter any username and use password <strong>password</strong> to login.</p>
+        </div>
+    </div>
+</body>
+
+</html>

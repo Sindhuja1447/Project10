@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration | Smart Study Break System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #0b2545;
+            color: #f8fafc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 36px 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 24px;
+        }
+
+        header h1 {
+            font-size: 28px;
+            color: #f8fafc;
+        }
+
+        nav a {
+            color: #38bdf8;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .config-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-top: 32px;
+        }
+
+        .left-panel, .right-panel {
+            background: #112a4a;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 28px;
+            padding: 32px;
+            box-shadow: 0 25px 80px rgba(2, 14, 42, 0.35);
+        }
+
+        .panel-title {
+            font-size: 24px;
+            color: #f8fafc;
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+
+        .average-item {
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .average-item h3 {
+            font-size: 18px;
+            color: #38bdf8;
+            margin-bottom: 8px;
+        }
+
+        .average-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 8px;
+        }
+
+        .average-description {
+            font-size: 14px;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 15px;
+            font-weight: 700;
+            color: #cbd5e1;
+            margin-bottom: 10px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 16px 18px;
+            border: 1px solid #3b82f6;
+            border-radius: 16px;
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.16);
+        }
+
+        .form-group .unit {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-top: 6px;
+        }
+
+        .start-btn {
+            width: 100%;
+            padding: 18px 24px;
+            border: none;
+            border-radius: 16px;
+            background: #38bdf8;
+            color: #0f172a;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all .2s ease;
+            margin-top: 12px;
+        }
+
+        .start-btn:hover {
+            background: #0ea5e9;
+            transform: translateY(-1px);
+        }
+
+        .camera-btn {
+            width: 100%;
+            padding: 14px 16px;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all .2s ease;
+        }
+
+        .camera-on {
+            background: #10b981;
+            color: white;
+        }
+
+        .camera-on:hover {
+            background: #059669;
+            transform: translateY(-1px);
+        }
+
+        .camera-off {
+            background: #ef4444;
+            color: white;
+        }
+
+        .camera-off:hover {
+            background: #dc2626;
+            transform: translateY(-1px);
+        }
+
+        .hydration-form {
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        @media(max-width:900px) {
+            .config-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Monitoring Configuration</h1>
+            <nav><a href="/logout">Logout</a></nav>
+        </header>
+        
+        <div class="config-layout">
+            <!-- Left Panel - Average Values -->
+            <div class="left-panel">
+                <h2 class="panel-title">Current Thresholds</h2>
+                
+                <div class="average-item">
+                    <h3>Fatigue Detection</h3>
+                    <div class="average-value">25 blinks/min</div>
+                    <div class="average-description">Default threshold for fatigue detection. When blink rate exceeds this value, fatigue alert will be triggered.</div>
+                </div>
+                
+                <div class="average-item">
+                    <h3>Drowsiness Detection</h3>
+                    <div class="average-value">10 seconds</div>
+                    <div class="average-description">Default threshold for drowsiness detection. When eyes remain closed for this duration continuously, drowsiness alert will be triggered.</div>
+                </div>
+                
+                <div class="average-item">
+                    <h3>Hydration Reminder</h3>
+                    <div class="average-value">{{ hydration_interval }} minutes</div>
+                    <div class="average-description">Current interval for hydration reminders. You can customize this in settings panel.</div>
+                </div>
+                
+                {% if saved %}
+                <div style="background: #10b981; color: white; padding: 12px; border-radius: 8px; margin-top: 16px; text-align: center; font-weight: 600;">
+                    Settings saved successfully!
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Right Panel - Settings -->
+            <div class="right-panel">
+                <h2 class="panel-title">Customize Settings</h2>
+                
+                <form action="/save_settings" method="post">
+                    <div class="form-group">
+                        <label for="fatigue_threshold">Fatigue Threshold</label>
+                        <input type="number" id="fatigue_threshold" name="fatigue_threshold" 
+                               value="{{ fatigue_threshold }}" min="10" max="100" required>
+                        <div class="unit">Blinks per minute</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="drowsiness_threshold">Drowsiness Threshold</label>
+                        <input type="number" id="drowsiness_threshold" name="drowsiness_threshold" 
+                               value="{{ drowsiness_threshold }}" min="3" max="30" required>
+                        <div class="unit">Seconds eyes closed</div>
+                    </div>
+                    
+                    <div class="hydration-form">
+                        <div class="form-group">
+                            <label for="hydration_interval">Hydration Interval (Optional)</label>
+                            <input type="number" id="hydration_interval" name="hydration_interval" 
+                                   placeholder="Enter time in minutes" min="1" value="{{ hydration_interval }}">
+                            <div class="unit">Minutes between water reminders (Leave blank for default: 30)</div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="save-btn" style="width: 100%; padding: 12px; background: #10b981; color: white; border: none; border-radius: 8px; font-weight: 600; margin-top: 16px; cursor: pointer;">Save</button>
+                </form>
+                
+                <div class="camera-controls">
+                    <h3 style="font-size: 18px; color: #f8fafc; margin-bottom: 16px;">Camera Controls</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                        <form action="/run" method="post" style="margin: 0;">
+                            <input type="hidden" name="hydration_interval" value="{{ hydration_interval }}">
+                            <input type="hidden" name="fatigue_threshold" value="{{ fatigue_threshold }}">
+                            <input type="hidden" name="drowsiness_threshold" value="{{ drowsiness_threshold }}">
+                            <button type="submit" class="camera-btn camera-on">Turn Camera ON</button>
+                        </form>
+                        <form action="/stop" method="post" style="margin: 0;">
+                            <button type="submit" class="camera-btn camera-off">Turn Camera OFF</button>
+                        </form>
+                    </div>
+                    <p style="color: #94a3b8; font-size: 13px; margin-top: 12px;">
+                        Use these controls to quickly start or stop the camera monitoring.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">© 2026 Smart Study Break Recommendation System | Bhuvana</div>
+    </div>
+</body>
+
+</html>
